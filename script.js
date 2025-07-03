@@ -22,7 +22,8 @@ async function loadGamesIndex() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const games = await response.json(); // Convertit la réponse en JSON
+        const data = await response.json(); // On récupère l'objet entier
+        const games = data.games;  // On extrait la liste de jeux
 
         const grid = document.getElementById('games-grid');
         grid.innerHTML = ''; // Vide la grille des exemples en dur
@@ -63,7 +64,8 @@ async function loadGameDetails() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const games = await response.json();
+        const data = await response.json(); // On récupère l'objet entier
+        const games = data.games; // On extrait la liste de jeux
 
         // Trouve le jeu qui correspond à l'ID dans notre "base de données"
         const game = games.find(g => g.id === gameId);
