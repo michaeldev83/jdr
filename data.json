@@ -3,10 +3,16 @@
     {
       "id": "dnd5",
       "name": "Donjons & Dragons 5e",
-      "image": "assets/images/dnd5.jpg",
+      "image": "/assets/images/d-d5.jpg",
       "documents": [
-        { "title": "Fiche de Personnage Officielle", "file": "assets/docs/dnd5_fiche_personnage.pdf" },
-        { "title": "Règles de Base (SRD)", "file": "assets/docs/dnd5_regles_base.pdf" }
+        {
+          "title": "Fiche de Personnage Officielle",
+          "file": "assets/docs/dnd5_fiche_personnage.pdf"
+        },
+        {
+          "title": "Règles de Base (SRD)",
+          "file": "assets/docs/dnd5_regles_base.pdf"
+        }
       ]
     },
     {
@@ -14,7 +20,10 @@
       "name": "Shadowrun 5e",
       "image": "assets/images/shadowrun5.jpg",
       "documents": [
-        { "title": "Fiche de Personnage", "file": "assets/docs/sr5_fiche.pdf" }
+        {
+          "title": "Fiche de Personnage",
+          "file": "assets/docs/sr5_fiche.pdf"
+        }
       ]
     }
   ]
