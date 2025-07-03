@@ -1,0 +1,39 @@
+[
+  {
+    "id": "dnd5",
+    "name": "Donjons & Dragons 5e",
+    "image": "assets/images/dnd5.jpg",
+    "documents": [
+      { "title": "Fiche de Personnage Officielle", "file": "assets/docs/dnd5_fiche_personnage.pdf" },
+      { "title": "Règles de Base (SRD)", "file": "assets/docs/dnd5_regles_base.pdf" },
+      { "title": "Liste des Sorts", "file": "assets/docs/dnd5_liste_sorts.pdf" }
+    ]
+  },
+  {
+    "id": "shadowrun5",
+    "name": "Shadowrun 5e",
+    "image": "assets/images/shadowrun5.jpg",
+    "documents": [
+      { "title": "Fiche de Personnage", "file": "assets/docs/sr5_fiche.pdf" },
+      { "title": "Aide de jeu : Matrice", "file": "assets/docs/sr5_matrice.pdf" },
+      { "title": "Catalogue d'équipement", "file": "assets/docs/sr5_equipement.pdf" }
+    ]
+  },
+  {
+    "id": "starfinder",
+    "name": "Starfinder",
+    "image": "assets/images/starfinder.jpg",
+    "documents": [
+      { "title": "Fiche de Vaisseau", "file": "assets/docs/starfinder_vaisseau.pdf" }
+    ]
+  },
+  {
+    "id": "warhammer4",
+    "name": "Warhammer Fantasy 4e",
+    "image": "assets/images/warhammer4.jpg",
+    "documents": [
+      { "title": "Fiche de Personnage", "file": "assets/docs/wh4_fiche.pdf" },
+      { "title": "Guide des carrières", "file": "assets/docs/wh4_carrieres.pdf" }
+    ]
+  }
+]
