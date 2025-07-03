@@ -21,21 +21,20 @@ collections:
       - name: "games"
         label: "Jeux de Rôle"
         file: "data.json"
+        # On dit que le fichier data.json est une liste directement
+        widget: "list"
+        # Et voici les champs pour UN élément de cette liste
         fields:
-          - name: "root"
-            label: "Liste des Jeux"
+          - { label: "Nom du Jeu", name: "name", widget: "string" }
+          - { label: "ID Unique", name: "id", widget: "string", hint: "Identifiant court sans espaces ni accents (ex: dnd5, shadowrun5)." }
+          - { label: "Image de la Vignette", name: "image", widget: "image" }
+          - label: "Documents"
+            name: "documents"
             widget: "list"
             fields:
-              - { label: "Nom du Jeu", name: "name", widget: "string" }
-              - { label: "ID Unique", name: "id", widget: "string", hint: "Identifiant court sans espaces ni accents (ex: dnd5, shadowrun5)." }
-              - { label: "Image de la Vignette", name: "image", widget: "image" }
-              - label: "Documents"
-                name: "documents"
-                widget: "list"
-                fields:
-                  - { label: "Titre du document", name: "title", widget: "string" }
-                  - label: "Fichier (PDF, etc.)"
-                    name: "file"
-                    widget: "file"
-                    media_folder: "assets/docs"
-                    public_folder: "/assets/docs"
+              - { label: "Titre du document", name: "title", widget: "string" }
+              - label: "Fichier (PDF, etc.)"
+                name: "file"
+                widget: "file"
+                media_folder: "assets/docs"
+                public_folder: "/assets/docs"
