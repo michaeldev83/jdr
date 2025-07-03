@@ -3,44 +3,39 @@
 # -----------------------------------------------------------------
 # Ce fichier doit être indenté avec des espaces, PAS des tabulations.
 
-# Backend: On dit au CMS comment se connecter à notre dépôt Git.
-# On utilisera la connexion via GitHub et le "Git Gateway" de Netlify.
 # Backend: On dit au CMS de se connecter directement via GitHub.
 backend:
   name: github
-  repo: michaeldev83/jdr # IMPORTANT: Remplace par "ton-username/ton-repo-name"
-  branch: main # Ou "master" si c'est le nom de ta branche principale
+  repo: michaeldev83/jdr # Assure-toi que c'est bien ton repo
+  branch: main
 
-# Media: On dit au CMS où stocker les fichiers que l'on uploade (images et PDFs).
-media_folder: "assets/images"       # Dossier pour les nouvelles images de vignettes
-public_folder: "/assets/images"     # Chemin public pour afficher les images dans le CMS
+# Media: On dit au CMS où stocker les fichiers que l'on uploade par défaut.
+media_folder: "assets/images"
+public_folder: "/assets/images"
 
-
-# Collections: C'est ici qu'on définit notre contenu éditable.
-# On a une seule "collection" de données : les jeux.
+# Collections: On définit le contenu éditable.
 collections:
-  - name: "games" # Nom interne de la collection
-    label: "Jeux de Rôle" # Nom affiché dans l'interface d'admin
-    label_singular: "Jeu de Rôle"
-    folder: "_data_temp" # Dossier temporaire (sera ignoré)
-    file: "data.json" # Fichier cible à modifier à la racine du projet
-    format: "json" # Le format de notre fichier de données
-    create: true # Permet de créer de nouvelles entrées (nouveaux jeux)
-    slug: "{{id}}" # Le nom du fichier n'est pas utilisé car on édite un seul fichier
-    
-    # Structure de la collection : on utilise une liste d'objets (comme dans notre JSON)
-    # Ce qui suit décrit les champs de formulaire pour UN jeu.
-    fields:
-      - { label: "Nom du Jeu", name: "name", widget: "string" }
-      - { label: "ID Unique", name: "id", widget: "string", hint: "Identifiant court sans espaces ni accents (ex: dnd5, shadowrun5). Très important pour les liens." }
-      - { label: "Image de la Vignette", name: "image", widget: "image" }
-      - label: "Documents"
-        name: "documents"
-        widget: "list" # On définit une liste, car un jeu peut avoir plusieurs documents
-        fields: # Voici les champs pour UN SEUL document dans la liste
-          - { label: "Titre du document", name: "title", widget: "string" }
-          - label: "Fichier (PDF, etc.)"
-            name: "file"
-            widget: "file"
-            media_folder: "assets/docs" # Dossier spécifique pour les PDFs
-            public_folder: "/assets/docs"
+  - name: "pages"
+    label: "Contenu du Site"
+    files:
+      - name: "games"
+        label: "Jeux de Rôle"
+        file: "data.json"
+        fields:
+          - name: "root"
+            label: "Liste des Jeux"
+            widget: "list"
+            fields:
+              - { label: "Nom du Jeu", name: "name", widget: "string" }
+              - { label: "ID Unique", name: "id", widget: "string", hint: "Identifiant court sans espaces ni accents (ex: dnd5, shadowrun5)." }
+              - { label: "Image de la Vignette", name: "image", widget: "image" }
+              - label: "Documents"
+                name: "documents"
+                widget: "list"
+                fields:
+                  - { label: "Titre du document", name: "title", widget: "string" }
+                  - label: "Fichier (PDF, etc.)"
+                    name: "file"
+                    widget: "file"
+                    media_folder: "assets/docs"
+                    public_folder: "/assets/docs"
