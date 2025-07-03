@@ -5,9 +5,11 @@
 
 # Backend: On dit au CMS comment se connecter à notre dépôt Git.
 # On utilisera la connexion via GitHub et le "Git Gateway" de Netlify.
+# Backend: On dit au CMS de se connecter directement via GitHub.
 backend:
-  name: git-gateway
-  branch: main # Ou "master", selon le nom de votre branche principale sur GitHub
+  name: github
+  repo: michaeldev83/jdr # IMPORTANT: Remplace par "ton-username/ton-repo-name"
+  branch: main # Ou "master" si c'est le nom de ta branche principale
 
 # Media: On dit au CMS où stocker les fichiers que l'on uploade (images et PDFs).
 media_folder: "assets/images"       # Dossier pour les nouvelles images de vignettes
