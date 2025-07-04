@@ -25,6 +25,11 @@
           "file": "assets/docs/sr5_fiche.pdf"
         }
       ]
+    },
+    {
+      "name": "Starfinder",
+      "id": "Starfinder",
+      "image": "/assets/images/d-d5.jpg"
     }
   ]
 }
