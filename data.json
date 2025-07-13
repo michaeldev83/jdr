@@ -12,6 +12,10 @@
         {
           "title": "Règles de Base (SRD)",
           "file": "/assets/docs/livre_base.pdf"
+        },
+        {
+          "title": "Xanathar",
+          "file": "/assets/docs/xanathar.pdf"
         }
       ]
     }
