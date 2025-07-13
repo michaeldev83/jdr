@@ -7,11 +7,11 @@
       "documents": [
         {
           "title": "Fiche de Personnage Officielle",
-          "file": "assets/docs/dnd5_fiche_personnage.pdf"
+          "file": "/assets/docs/feuillepersodd5.pdf"
         },
         {
           "title": "Règles de Base (SRD)",
-          "file": "assets/docs/dnd5_regles_base.pdf"
+          "file": "/assets/docs/livre_base.pdf"
         }
       ]
     },
