@@ -14,22 +14,6 @@
           "file": "/assets/docs/livre_base.pdf"
         }
       ]
-    },
-    {
-      "id": "shadowrun5",
-      "name": "Shadowrun 5e",
-      "image": "assets/images/shadowrun5.jpg",
-      "documents": [
-        {
-          "title": "Fiche de Personnage",
-          "file": "assets/docs/sr5_fiche.pdf"
-        }
-      ]
-    },
-    {
-      "name": "Starfinder",
-      "id": "Starfinder",
-      "image": "/assets/images/d-d5.jpg"
     }
   ]
 }
