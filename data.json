@@ -23,5 +23,12 @@
         }
       ]
     }
+  ],
+  "app": [
+    {
+      "name": "Livre de sorts",
+      "id": "sortsDD5",
+      "Url_app": "https://grimoire-sort.netlify.app/"
+    }
   ]
 }
