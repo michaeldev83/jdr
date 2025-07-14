@@ -78,11 +78,9 @@ function displayApps(apps) {
     
     apps.forEach(app => {
         const appItem = `
-            <a href="${app.url}" class="app-item" target="_blank" rel="noopener noreferrer">
-                <img src="${app.icon || 'assets/images/default-icon.png'}" alt="Icône de ${app.name}">
+            <a href="${app.Url_app}" class="app-item" target="_blank" rel="noopener noreferrer">
                 <div class="app-item-info">
                     <h4>${app.name}</h4>
-                    <p>${app.description}</p>
                 </div>
             </a>
         `;
