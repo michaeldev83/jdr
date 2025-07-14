@@ -1,22 +1,18 @@
 // On attend que le contenu de la page soit entièrement chargé avant d'exécuter le script
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // On vérifie sur quelle page on se trouve
-    // Si l'élément #games-grid existe, on est sur la page d'accueil
+    // Si on est sur la page d'accueil
     if (document.getElementById('games-grid')) {
-        loadGamesIndex();
+        loadHomepageContent(); 
     }
 
-    // Si l'élément #game-details-container existe, on est sur une page de jeu
+    // Si on est sur une page de jeu
     if (document.getElementById('game-details-container')) {
         loadGameDetails();
     }
 });
 
-// NOUVELLE FONCTION "CHEF D'ORCHESTRE"
 /**
- * Charge tout le contenu de la page d'accueil depuis data.json
- * et appelle les fonctions spécifiques pour l'affichage.
+ * Charge tout le contenu de data.json et le distribue aux fonctions d'affichage.
  */
 async function loadHomepageContent() {
     try {
@@ -24,11 +20,15 @@ async function loadHomepageContent() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json(); // Charge l'objet entier { games: [...], apps: [...] }
+        const data = await response.json(); // Contient { games: [...], apps: [...] }
 
-        // Appelle les fonctions d'affichage avec les bonnes données
-        displayGames(data.games);
-        displayApps(data.apps);
+        // On vérifie que les clés existent avant d'appeler les fonctions
+        if (data.games) {
+            displayGames(data.games);
+        }
+        if (data.apps) {
+            displayApps(data.apps);
+        }
 
     } catch (error) {
         console.error("Erreur lors du chargement du contenu de la page d'accueil:", error);
@@ -36,15 +36,13 @@ async function loadHomepageContent() {
     }
 }
 
-
-// ON RENOMME loadGamesIndex EN displayGames ET ON LUI PASSE LES JEUX EN PARAMÈTRE
 /**
- * Affiche la grille des jeux sur la page d'accueil.
+ * Affiche la grille des jeux.
  * @param {Array} games - Le tableau des objets de jeu.
  */
 function displayGames(games) {
     const grid = document.getElementById('games-grid');
-    grid.innerHTML = ''; // Vide la grille
+    grid.innerHTML = '';
 
     if (!games || games.length === 0) {
         grid.innerHTML = "<p>Aucun jeu trouvé.</p>";
@@ -64,20 +62,18 @@ function displayGames(games) {
     });
 }
 
-// ON CRÉE LA FONCTION displayApps (similaire à la précédente)
 /**
- * Affiche la liste des applications sur la page d'accueil.
+ * Affiche la liste des applications.
  * @param {Array} apps - Le tableau des objets d'application.
  */
 function displayApps(apps) {
     const listContainer = document.getElementById('apps-list');
-    if (!listContainer) return; // Sécurité si l'élément n'existe pas
+    if (!listContainer) return;
 
-    listContainer.innerHTML = ''; // Vide le conteneur
+    listContainer.innerHTML = '';
 
     if (!apps || apps.length === 0) {
-        // On n'affiche rien si la liste est vide, c'est plus propre.
-        return;
+        return; // On n'affiche rien si la liste est vide.
     }
     
     apps.forEach(app => {
@@ -94,17 +90,15 @@ function displayApps(apps) {
     });
 }
 
-
 /**
- * Charge et affiche les détails d'un jeu spécifique sur la page de jeu (jeu.html)
+ * Charge et affiche les détails d'un jeu spécifique sur la page de jeu (jeu.html).
  */
 async function loadGameDetails() {
-    // Récupère l'ID du jeu depuis l'URL (ex: ?id=dnd5)
     const params = new URLSearchParams(window.location.search);
     const gameId = params.get('id');
 
     if (!gameId) {
-        window.location.href = 'index.html'; // Si pas d'ID, on retourne à l'accueil
+        window.location.href = 'index.html';
         return;
     }
     
@@ -113,10 +107,9 @@ async function loadGameDetails() {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json(); // On récupère l'objet entier
-        const games = data.games; // On extrait la liste de jeux
+        const data = await response.json();
+        const games = data.games; // On extrait uniquement la liste de jeux
 
-        // Trouve le jeu qui correspond à l'ID dans notre "base de données"
         const game = games.find(g => g.id === gameId);
 
         if (!game) {
@@ -124,13 +117,12 @@ async function loadGameDetails() {
             return;
         }
 
-        // Met à jour la page avec les informations du jeu trouvé
-        document.title = game.name; // Met à jour le titre de l'onglet du navigateur
+        document.title = game.name;
         document.getElementById('game-title').textContent = game.name;
         document.getElementById('game-header-image').style.backgroundImage = `url('${game.image}')`;
 
         const list = document.getElementById('document-list');
-        list.innerHTML = ''; // Vide la liste d'exemples
+        list.innerHTML = '';
 
         if (game.documents && game.documents.length > 0) {
             game.documents.forEach(doc => {
