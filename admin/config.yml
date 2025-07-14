@@ -36,3 +36,11 @@ collections:
                     widget: "file"
                     media_folder: "assets/docs"
                     public_folder: "/assets/docs"
+          - name: "app" # <-- ICI, on cible la clé "games" dans le JSON
+            label: "Liste des applications"
+            widget: "list"
+            # Et voici les champs pour UN élément de cette liste
+            fields:
+              - { label: "Nom du Jeu", name: "name", widget: "string" }
+              - { label: "ID Unique", name: "id", widget: "string", hint: "Identifiant court sans espaces ni accents (ex: dnd5)." }
+              - { label: "App", name: "Url_app", widget: "string", hint: "Entrez l'URL du site (ex. https://example.com)" }
