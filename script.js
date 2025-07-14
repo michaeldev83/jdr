@@ -13,38 +13,87 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// NOUVELLE FONCTION "CHEF D'ORCHESTRE"
 /**
- * Charge et affiche la grille des jeux sur la page d'accueil (index.html)
+ * Charge tout le contenu de la page d'accueil depuis data.json
+ * et appelle les fonctions spécifiques pour l'affichage.
  */
-async function loadGamesIndex() {
+async function loadHomepageContent() {
     try {
-        const response = await fetch('data.json'); // Charge le fichier data.json
+        const response = await fetch('data.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json(); // On récupère l'objet entier
-        const games = data.games;  // On extrait la liste de jeux
+        const data = await response.json(); // Charge l'objet entier { games: [...], apps: [...] }
 
-        const grid = document.getElementById('games-grid');
-        grid.innerHTML = ''; // Vide la grille des exemples en dur
+        // Appelle les fonctions d'affichage avec les bonnes données
+        displayGames(data.games);
+        displayApps(data.apps);
 
-        games.forEach(game => {
-            // Pour chaque jeu, on crée une carte HTML
-            const card = `
-                <a href="jeu.html?id=${game.id}" class="game-card">
-                    <img src="${game.image}" alt="Image du jeu ${game.name}">
-                    <div class="card-title">
-                        <h3>${game.name}</h3>
-                    </div>
-                </a>
-            `;
-            grid.innerHTML += card; // Ajoute la carte à la grille
-        });
     } catch (error) {
-        console.error("Erreur lors du chargement des jeux:", error);
-        document.getElementById('games-grid').innerHTML = "<p>Impossible de charger la liste des jeux. Veuillez réessayer plus tard.</p>";
+        console.error("Erreur lors du chargement du contenu de la page d'accueil:", error);
+        document.getElementById('games-grid').innerHTML = "<p>Impossible de charger le contenu. Veuillez réessayer plus tard.</p>";
     }
 }
+
+
+// ON RENOMME loadGamesIndex EN displayGames ET ON LUI PASSE LES JEUX EN PARAMÈTRE
+/**
+ * Affiche la grille des jeux sur la page d'accueil.
+ * @param {Array} games - Le tableau des objets de jeu.
+ */
+function displayGames(games) {
+    const grid = document.getElementById('games-grid');
+    grid.innerHTML = ''; // Vide la grille
+
+    if (!games || games.length === 0) {
+        grid.innerHTML = "<p>Aucun jeu trouvé.</p>";
+        return;
+    }
+
+    games.forEach(game => {
+        const card = `
+            <a href="jeu.html?id=${game.id}" class="game-card">
+                <img src="${game.image}" alt="Image du jeu ${game.name}">
+                <div class="card-title">
+                    <h3>${game.name}</h3>
+                </div>
+            </a>
+        `;
+        grid.innerHTML += card;
+    });
+}
+
+// ON CRÉE LA FONCTION displayApps (similaire à la précédente)
+/**
+ * Affiche la liste des applications sur la page d'accueil.
+ * @param {Array} apps - Le tableau des objets d'application.
+ */
+function displayApps(apps) {
+    const listContainer = document.getElementById('apps-list');
+    if (!listContainer) return; // Sécurité si l'élément n'existe pas
+
+    listContainer.innerHTML = ''; // Vide le conteneur
+
+    if (!apps || apps.length === 0) {
+        // On n'affiche rien si la liste est vide, c'est plus propre.
+        return;
+    }
+    
+    apps.forEach(app => {
+        const appItem = `
+            <a href="${app.url}" class="app-item" target="_blank" rel="noopener noreferrer">
+                <img src="${app.icon || 'assets/images/default-icon.png'}" alt="Icône de ${app.name}">
+                <div class="app-item-info">
+                    <h4>${app.name}</h4>
+                    <p>${app.description}</p>
+                </div>
+            </a>
+        `;
+        listContainer.innerHTML += appItem;
+    });
+}
+
 
 /**
  * Charge et affiche les détails d'un jeu spécifique sur la page de jeu (jeu.html)

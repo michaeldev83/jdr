@@ -24,9 +24,7 @@
       ]
     }
   ],
-  "app": [
-  ],
-  "app": [
+  "apps": [
     {
       "name": "Livre de sorts",
       "id": "sortsDD5",

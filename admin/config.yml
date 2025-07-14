@@ -36,7 +36,7 @@ collections:
                     widget: "file"
                     media_folder: "assets/docs"
                     public_folder: "/assets/docs"
-          - name: "app" # <-- ICI, on cible la clé "games" dans le JSON
+          - name: "apps" # <-- ICI, on cible la clé "games" dans le JSON
             label: "Liste des applications"
             widget: "list"
             # Et voici les champs pour UN élément de cette liste
