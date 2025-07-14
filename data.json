@@ -26,7 +26,7 @@
   ],
   "apps": [
     {
-      "name": "Livre de sorts DD5",
+      "name": "Grimoire DD5",
       "id": "sortsDD5",
       "Url_app": "https://grimoire-sort.netlify.app/"
     }
